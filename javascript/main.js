@@ -1,6 +1,7 @@
 const inputTodo = document.querySelector('#input-add-todo');
 const todoList = document.querySelector('#todo-list');
-const openDetails = document.querySelector('#todo');
+const todoBox = document.querySelector('#todo');
+const todoDetail = document.querySelector('#container-details');
 
 inputTodo.addEventListener("keypress", (e) => {
     if(e.keyCode != "13" || e.target.value.trim() == ""){
@@ -17,7 +18,15 @@ inputTodo.addEventListener("keypress", (e) => {
     .addEventListener("click", deleteTodoitem)
 
     newTodoItem.addEventListener("click", (e) => {
-        openDetails.style.width = '55%'
+        
+        if(todoDetail.style.width == "25%"){
+            todoDetail.style.width = "0%"
+        }else {
+            todoDetail.style.width = "25%"
+        }
+        todoBox.classList.toggle('todo-width');
+        
+        
     })
 
     newTodoItem.classList.add('todo-item'); 
@@ -29,4 +38,5 @@ inputTodo.addEventListener("keypress", (e) => {
 
 function deleteTodoitem(e){
     e.target.parentElement.remove();
+    todoBox.style.width = '100%';
 }
