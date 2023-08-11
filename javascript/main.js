@@ -1,6 +1,6 @@
 const inputTodo = document.querySelector('#input-add-todo');
 const todoList = document.querySelector('#todo-list');
-// const openDetails = document.querySelector('');
+const openDetails = document.querySelector('#todo');
 
 inputTodo.addEventListener("keypress", (e) => {
     if(e.keyCode != "13" || e.target.value.trim() == ""){
@@ -17,8 +17,7 @@ inputTodo.addEventListener("keypress", (e) => {
     .addEventListener("click", deleteTodoitem)
 
     newTodoItem.addEventListener("click", (e) => {
-        todoList.style.width = "70%";
-        console.log(todoList.style);
+        openDetails.style.width = '55%'
     })
 
     newTodoItem.classList.add('todo-item'); 
