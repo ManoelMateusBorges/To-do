@@ -5,6 +5,7 @@ const todoDetail = document.querySelector('#container-details');
 const editTodo = document.querySelector('#edit-todo');
 const closedDetail = document.querySelector('.closed-details');
 const deleteTodo = document.querySelector('#deleteTodo');
+const completTodo = document.querySelector('.btn-complet');
 let selectedTodo;
 let openOrClosed = true;
 
@@ -23,9 +24,12 @@ inputTodo.addEventListener("keypress", (e) => {
     newTodoItem.classList.add('todo-item'); 
     todoList.appendChild(newTodoItem);
    
-
+    
     newTodoItem.addEventListener("click", (e) => {
         e.stopPropagation()
+
+      
+        
         editTodo.value = e.target.textContent;
         
 
@@ -55,7 +59,11 @@ inputTodo.addEventListener("keypress", (e) => {
 
         selectedTodo = e.target.parentElement;
         openOrClosed = false;
-        console.log("=====================================")
+        if(selectedTodo.classList.contains('completed-todo')){
+            completTodo.textContent = 'continuar';
+           }else {
+            completTodo.textContent = 'concluir';
+           }
     })
     
     inputTodo.value = '';
@@ -79,9 +87,11 @@ closedDetail.addEventListener('click', () => {
 
 deleteTodo.addEventListener("click", () => {
    
+    
+
    for (let i = 0; i < todoList.childNodes.length; i++) {
     let element = todoList.childNodes[i];
-    if(element == teste){
+    if(element == selectedTodo){
         element.remove()
     }
    }
@@ -115,4 +125,16 @@ editTodo.addEventListener("keypress", (e) => {
         }
         editTodo.blur();
     }
+})
+
+
+completTodo.addEventListener("click", (e) => {
+    
+    for (let i = 0; i < todoList.childNodes.length; i++) {
+    let element = todoList.childNodes[i];
+    if(element == selectedTodo){
+        element.classList.toggle('completed-todo');
+            completTodo.textContent = completTodo.textContent == "concluir" ? 'continuar'  : "concluir";
+    }
+   }
 })
