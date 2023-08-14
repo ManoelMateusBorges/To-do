@@ -6,7 +6,7 @@ const editTodo = document.querySelector('#edit-todo');
 const closedDetail = document.querySelector('.closed-details');
 const deleteTodo = document.querySelector('#deleteTodo');
 let selectedTodo;
-let closedEndOpenDetails = true;
+let openOrClosed = true;
 
 
 inputTodo.addEventListener("keypress", (e) => {
@@ -22,30 +22,42 @@ inputTodo.addEventListener("keypress", (e) => {
 
     newTodoItem.classList.add('todo-item'); 
     todoList.appendChild(newTodoItem);
+   
 
     newTodoItem.addEventListener("click", (e) => {
         e.stopPropagation()
         editTodo.value = e.target.textContent;
-        closedEndOpenDetails = true;
-        if (todoDetail.style.width == "25%") {
-            todoDetail.style.width = "0%"
-        } else {
-            todoDetail.style.width = "25%"
+        
+
+        if(!openOrClosed){
+            if(selectedTodo == e.target.parentElement){
+                openOrClosed = true;
+
+            }else {
+                openOrClosed = false;
+               if((selectedTodo != e.target.parentElement) && todoBox.classList.contains('todo-width')){
+                    openOrClosed = true;
+               }else{
+                    openOrClosed = false;
+               }
+            }
         }
-        
-        todoBox.classList.toggle('todo-width');
-        
-        
-        teste = newTodoItem;
-        selectedTodo = newTodoItem;
+
+       if(openOrClosed){
+            if (todoDetail.style.width == "25%") {
+                todoDetail.style.width = "0%"
+            } else {
+                todoDetail.style.width = "25%"
+            }
+            todoBox.classList.toggle('todo-width');
+
+       }
+
+        selectedTodo = e.target.parentElement;
+        openOrClosed = false;
+        console.log("=====================================")
     })
     
-
-    
-
-    // pegar elemento que esta sendo clicado
-    // passar essas informações para o details
-    // mostra ao
     inputTodo.value = '';
 })
 
@@ -62,6 +74,7 @@ closedDetail.addEventListener('click', () => {
     }
     todoBox.classList.toggle('todo-width');
     editTodo.value = ''
+    openOrClosed = true;
 })
 
 deleteTodo.addEventListener("click", () => {
@@ -90,7 +103,6 @@ editTodo.addEventListener("keypress", (e) => {
         if(e.target.value.trim() == ""){
             editTodo.value = selectedTodo.querySelector('p').textContent;
             editTodo.blur();
-            console.log('teste')
             return
         }
 
