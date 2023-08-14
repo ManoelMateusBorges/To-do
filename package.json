@@ -4,7 +4,8 @@
   "description": "to-do aplication",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "json-server --watch db.json"
   },
   "repository": {
     "type": "git",
@@ -18,5 +19,8 @@
   "homepage": "https://github.com/ManoelMateusBorges/To-do#readme",
   "dependencies": {
     "bootstrap": "^5.3.1"
+  },
+  "devDependencies": {
+    "json-server": "^0.17.3"
   }
 }
