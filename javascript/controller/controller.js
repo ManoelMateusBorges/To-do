@@ -21,7 +21,7 @@ const form = document.getElementById('some-form')
 form.addEventListener('submit', e => {
     e.preventDefault()
     console.log('Deu certo')
-    // todoService.postTodoService(form)
+    todoService.postTodoService(form)
 })
 
 

@@ -16,8 +16,8 @@ export async function postTodoService(todo) {
         {
             method: "POST",
             headers: {
-                'Content-Type': 'aplication/json'
+                "Content-Type": "application/json; charset=utf-8"
             },
-            body: JSON.stringify(Object.fromEntries(new FormData(todo)))
+            body: JSON.stringify({task: "teste", status: "blblbl"})
         })
 }
