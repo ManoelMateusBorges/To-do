@@ -19,8 +19,5 @@
   "homepage": "https://github.com/ManoelMateusBorges/To-do#readme",
   "dependencies": {
     "bootstrap": "^5.3.1"
-  },
-  "devDependencies": {
-    "json-server": "^0.17.3"
   }
 }
