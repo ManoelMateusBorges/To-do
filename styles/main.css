@@ -47,10 +47,11 @@ div#container-details {
 
 
 #todo {
-    width: 100%;
+    width: 75%;
+    display: flex;
+    flex-direction: column;
     transition: width 0.4s ease;
     padding: 10px;
-    position: relative;
 }
 
 .todo-width{
@@ -58,7 +59,7 @@ div#container-details {
 }
 
 #todo-list {
-    height: 100vh;
+    height: 90vh;
     overflow-y: auto;
 }
 
@@ -96,12 +97,7 @@ div#container-details {
 
 #box-add-todo{
     width: 100%;
-    height: 5rem;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    background-color: rgba(255, 0, 0, 0.438);
-    padding: 10px;
+    height: 4rem;
 }
 
 #input-add-todo{

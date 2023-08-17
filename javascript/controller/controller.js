@@ -2,14 +2,14 @@ import * as todoService from "../services/todoService.js";
 import { todo } from "../models/listTodo.js";
 
 
-const todoBox = document.querySelector('#todo');
-const todoDetail = document.querySelector('#container-details');
-const editTodo = document.querySelector('#edit-todo');
+
 const closedDetail = document.querySelector('.closed-details');
 const deleteTodo = document.querySelector('#deleteTodo');
 const completTodo = document.querySelector('.btn-complet');
 const inputTodo = document.querySelector('#input-add-todo');
 const formTodo = document.querySelector('#formTodo');
+const form = document.querySelector('#some-form')
+
 
 
 export async function getAllTodo(){
@@ -17,15 +17,20 @@ export async function getAllTodo(){
     todo.loadItens(allTodo);
 };
 
-const form = document.getElementById('some-form')
-form.addEventListener('submit', async e => {
+export function createTodo(){
+    form.addEventListener('submit', async e => {
     e.preventDefault()
     
     const descriptionTodo = inputTodo.value;
 
     await todoService.postTodoService(descriptionTodo);
     todo.addItem(descriptionTodo);
+
+    inputTodo.value = "";
 })
+}
+
+
 
 
 
