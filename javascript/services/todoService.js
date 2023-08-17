@@ -6,18 +6,18 @@ const URL = "http://localhost:3000/todo";
 export async function getAllTodoService(){
     return await fetch(URL)
     .then((response) => response.json())
-    .then((response) => response)
-    .catch((error) => console.error('Houve um erro na requisição'))
+    .catch((error) => console.error('Houve um erro na requisição', error))
 }
 
 export async function postTodoService(todo) {
-
-    fetch("http://localhost:3000/todo",
-        {
+        return await fetch("http://localhost:3000/todo", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json; charset=utf-8"
             },
-            body: JSON.stringify({task: "teste", status: "blblbl"})
+            body: JSON.stringify({ task: `${todo}`, status: "pendent" })
         })
+        .then((data) => data.json())
+        .catch((error) => console.error("Houve um erro na requisição", error))
+    
 }

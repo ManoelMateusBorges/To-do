@@ -13,15 +13,18 @@ const formTodo = document.querySelector('#formTodo');
 
 
 export async function getAllTodo(){
-    // const allTodo = await todoService.getAllTodoService();
-    // todo.loadItens(allTodo);
+    const allTodo = await todoService.getAllTodoService();
+    todo.loadItens(allTodo);
 };
 
 const form = document.getElementById('some-form')
-form.addEventListener('submit', e => {
+form.addEventListener('submit', async e => {
     e.preventDefault()
-    console.log('Deu certo')
-    todoService.postTodoService(form)
+    
+    const descriptionTodo = inputTodo.value;
+
+    await todoService.postTodoService(descriptionTodo);
+    todo.addItem(descriptionTodo);
 })
 
 
