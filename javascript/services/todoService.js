@@ -10,7 +10,7 @@ export async function getAllTodoService(){
 }
 
 export async function postTodoService(todo) {
-        return await fetch("http://localhost:3000/todo", {
+        return await fetch(URL, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json; charset=utf-8"
@@ -20,4 +20,15 @@ export async function postTodoService(todo) {
         .then((data) => data.json())
         .catch((error) => console.error("Houve um erro na requisição", error))
     
+}
+
+export async function deleteTodo(id){
+    return await fetch(`${URL}/${id}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json; charset=utf-8"
+            }
+        })
+        .then((data) => data.json())
+        .catch((error) => console.error("Houve um erro na requisição", error))
 }
