@@ -20,10 +20,9 @@ div#container-details {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width:0%;
+    width: 0px;
     transition: width 0.4s ease;
     background-color: azure;
-    position: relative;
     padding-top: 20px;
 }
 
@@ -44,6 +43,7 @@ div#container-details {
 .box-edit-todo{
     border: 2px solid rgba(159, 115, 115, 0.305);
 }
+
 
 
 #todo {
@@ -132,3 +132,5 @@ div#container-details {
     background-color: black; /* Cor da linha */
     transform: translateY(-50%);
 }
+
+

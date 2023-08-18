@@ -5,8 +5,7 @@ const todoDetailElement = document.querySelector('#container-details');
 const editTodo = document.querySelector('#edit-todo');
 const todoBox = document.querySelector('#todo');
 
-let selectedTodo;
-let openOrClosed = true;
+let selectedTodo = null;
 
 const todo = {
     loadItens : (item) => {
@@ -21,37 +20,15 @@ const todo = {
 
 const todoDetails = {
     showAndHide: (element) => {
-        editTodo.value = element.textContent;
-        if (!openOrClosed) {
-            if (selectedTodo == element.parentElement) {
-                openOrClosed = true;
-
-            } else {
-                openOrClosed = false;
-                if ((selectedTodo != element.parentElement) && todoBox.classList.contains('todo-width')) {
-                    openOrClosed = true;
-                } else {
-                    openOrClosed = false;
-                }
-            }
-        }
-
-        if (openOrClosed) {
-            if (todoDetailElement.style.width == "25%") {
-                todoDetailElement.style.width = "0%"
-            } else {
-                todoDetailElement.style.width = "25%"
-            }
-            todoBox.classList.toggle('todo-width');
-
-        }
-
-        selectedTodo = element.parentElement;
-        openOrClosed = false;
-        if (selectedTodo.classList.contains('completed-todo')) {
-            completTodo.textContent = 'continuar';
+        const item = element;
+        console.log(todoDetailElement.offsetWidth)
+        
+        
+        if (selectedTodo == item && todoDetailElement.offsetWidth == 376) {
+            todoDetailElement.style.width = "0px";
         } else {
-            completTodo.textContent = 'concluir';
+            todoDetailElement.style.width = "500px";
+            selectedTodo = item;
         }
     }
 
@@ -60,14 +37,23 @@ const todoDetails = {
 
 function createElement(text) {
     const newTodoItem = document.createElement('div');
-    newTodoItem.innerHTML = `<p>${text}</p>`;
-
+    newTodoItem.innerHTML = `<p data-id=>${text}</p>`;
     newTodoItem.classList.add('todo-item');
-
     newTodoItem.addEventListener("click", (e) => {
-        
         todoDetails.showAndHide(e.target);
     })
 
     todoList.appendChild(newTodoItem);
+}
+
+function verifiOpenOrClosed (element){
+    selectedTodo = element
+    console.log((todoDetailElement.style.width == "0%"))
+    console.log((todoDetailElement.style.width == "25%"))
+    console.log((todoDetailElement.style.width))
+    if((selectedTodo == selectedTodo) && (todoDetailElement.style.width == "25%")){
+        todoDetailElement.style.width = "0%"
+    }else if((selectedTodo == selectedTodo) && (todoDetailElement.style.width == "0%")){
+        todoDetailElement.style.width = "25%"
+    }
 }
