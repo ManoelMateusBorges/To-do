@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/main.css">
-    <script src="./javascript/main.js" defer></script>
+    <script src="./javascript/app.js" defer type="module"></script>
     <title>Document</title>
 </head>
 
@@ -17,7 +17,10 @@
             </div>
             <div id="box-add-todo">
                 <div id="box-todo-input">
-                    <input id="input-add-todo" type="text" name="" id="">
+                    <form id="some-form">
+                        <input id="input-add-todo" type="text" >
+                        <button id="submitTodo">send</button>
+                    </form>
                 </div>
             </div>
         </div>
