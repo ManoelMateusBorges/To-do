@@ -1,11 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/main.css">
+    <script src="./javascript/app.js" defer type="module"></script>
     <title>Document</title>
 </head>
+
 <body>
-    
+    <main id="container-todo-list">
+        <div id="todo" class="todo-width">
+            <div id="todo-list">
+
+            </div>
+            <div id="box-add-todo">
+                <div id="box-todo-input">
+                    <form id="some-form">
+                        <input id="input-add-todo" type="text" >
+                        <button id="submitTodo">send</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div  id="container-details" >
+            <div class="closed-details">
+                X
+            </div>
+            <div class="box-edit-todo">
+                <input type="text" id="edit-todo">
+            </div>
+            <div class="box-concluir">
+                <button class="btn-complet">concluir</button>
+            </div>
+            <div class="box-concluir">
+                <button id="deleteTodo">DELETE</button>
+            </div>
+        </div>
+    </main>
 </body>
 </html>

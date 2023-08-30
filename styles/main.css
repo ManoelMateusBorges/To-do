@@ -1,0 +1,136 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+
+#container-todo-list {
+    min-width: 100%;
+    height: 100vh;
+    display: flex;
+    background-color: rgb(67, 144, 182);
+    overflow-y: hidden;
+   
+}
+
+
+div#container-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 0px;
+    transition: width 0.4s ease;
+    background-color: azure;
+    padding-top: 20px;
+}
+
+.closed-details{
+    text-align: end;
+    margin-right: 30px;
+    width: 100%;
+    padding-bottom:30px;
+}
+
+#edit-todo {
+    border: none;
+    outline: none;
+    padding:10px 20px 10px 20px ;
+    font-size: 18px;
+}
+
+.box-edit-todo{
+    border: 2px solid rgba(159, 115, 115, 0.305);
+}
+
+
+
+#todo {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    transition: width 0.4s ease;
+    padding: 10px;
+}
+
+.todo-width{
+    width: 100% !important;
+}
+
+#todo-list {
+    height: 90vh;
+    overflow-y: auto;
+}
+
+#todo-list::-webkit-scrollbar {
+    width: 10px;
+    border-radius: 10px;
+}
+#todo-list::-webkit-scrollbar-thumb {
+    background:#8b8b8b; 
+    border-radius: 10px;
+}
+
+.todo-item > p {
+    width: 100%;
+    height: 100%;
+    font-family: sans-serif;
+    display: flex;
+    align-items: center;
+    padding: .3em;
+    
+}
+
+
+.todo-item{
+    width: 100%;
+    height: 2.7rem;
+    background-color: aliceblue;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.4em;
+    
+    cursor: pointer;
+}
+
+#box-add-todo{
+    width: 100%;
+    height: 4rem;
+}
+
+#input-add-todo{
+    width: 100%;
+    height: 2.5em;
+    box-shadow: 0 0 0 0;
+    border: 0 none;
+    outline: 0;
+    border-radius: 3px;
+    font-family: sans-serif;
+    font-size: medium;
+    padding: .3em;
+}
+
+.box-concluir{
+    margin-top: 10px;
+}
+
+.completed-todo {
+    position: relative;
+    text-decoration: line-through #fff;
+    background-color: rgb(11, 77, 94);
+    color: white;
+}
+.completed-todo::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px; /* Espessura da linha */
+    background-color: black; /* Cor da linha */
+    transform: translateY(-50%);
+}
+
+
