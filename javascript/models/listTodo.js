@@ -21,8 +21,10 @@ const todo = {
 const todoDetails = {
     showAndHide: (element) => {
         const item = element;
-        
-        if (selectedTodo == item && todoDetailElement.offsetWidth == 376) {
+        console.log(selectedTodo == item)
+        console.log(todoDetailElement.offsetWidth)
+
+        if (selectedTodo == item && todoDetailElement.offsetWidth > 0) {
             todoDetailElement.style.width = "0px";
         } else {
             todoDetailElement.style.width = "500px";
