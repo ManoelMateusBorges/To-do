@@ -1,9 +1,10 @@
 export { todo, selectedTodo }
+import { editTodoInput } from "../controller/controller.js"
 
 const todoList = document.querySelector('#todo-list');
-const todoDetailElement = document.querySelector('#container-details');
-const editTodo = document.querySelector('#edit-todo');
+export const todoDetailElement = document.querySelector('#container-details');
 const todoBox = document.querySelector('#todo');
+
 
 let selectedTodo = null;
 
@@ -18,11 +19,10 @@ const todo = {
     }
 }
 
-const todoDetails = {
+
+export const todoDetails = {
     showAndHide: (element) => {
         const item = element;
-        console.log(selectedTodo == item)
-        console.log(todoDetailElement.offsetWidth)
 
         if (selectedTodo == item && todoDetailElement.offsetWidth > 0) {
             todoDetailElement.style.width = "0px";
@@ -35,13 +35,13 @@ const todoDetails = {
 }
 
 
-function createElement(todo) {
+function createElement(element) {
     const newTodoItem = document.createElement('div');
-    newTodoItem.innerHTML = `<p data-id="${todo.id}" >${todo.task}</p>`;
+    newTodoItem.innerHTML = `<p data-id="${element.id}" >${element.task}</p>`;
     newTodoItem.classList.add('todo-item');
     newTodoItem.addEventListener("click", (e) => {
         todoDetails.showAndHide(e.target);
+        editTodoInput.value = e.target.textContent;
     })
-
     todoList.appendChild(newTodoItem);
 }

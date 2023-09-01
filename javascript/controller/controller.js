@@ -1,5 +1,5 @@
 import * as todoService from "../services/todoService.js";
-import { todo, selectedTodo } from "../models/listTodo.js";
+import { todo, selectedTodo,todoDetailElement } from "../models/listTodo.js";
 
 
 const closedDetail = document.querySelector('.closed-details');
@@ -7,7 +7,8 @@ const deleteTodobtn = document.querySelector('#deleteTodo');
 const completTodo = document.querySelector('.btn-complet');
 const inputTodo = document.querySelector('#input-add-todo');
 const formTodo = document.querySelector('#formTodo');
-const form = document.querySelector('#some-form')
+const form = document.querySelector('#some-form');
+export const editTodoInput = document.querySelector('#edit-todo');
 
 
 
@@ -31,16 +32,23 @@ export function createTodo(){
 }
 
 export function deleteTodo(){
-    console.log('tetse')
     deleteTodobtn.addEventListener("click", (e) => {
         const todoId = selectedTodo.getAttribute('data-id');
-        console.log(todoId)
         todoService.deleteTodo(todoId)
         selectedTodo.parentElement.remove();
     })
 }
 
 
+export function closeDetailsTodo(){
+    closedDetail.addEventListener('click', (e) => {
+        todoDetailElement.style.width = "0px";
+    })
+}
 
 
-
+export function editTodo() {
+    editTodoInput.onblur = (e) => {
+        selectedTodo.textContent = e.target.value;
+    }
+}
