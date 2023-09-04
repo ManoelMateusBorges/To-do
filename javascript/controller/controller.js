@@ -1,10 +1,10 @@
 import * as todoService from "../services/todoService.js";
-import { todo, selectedTodo,todoDetailElement } from "../models/listTodo.js";
+import { todo, selectedTodo,todoDetailElement, completTodoBtn } from "../models/listTodo.js";
 
 
 const closedDetail = document.querySelector('.closed-details');
 const deleteTodobtn = document.querySelector('#deleteTodo');
-const completTodo = document.querySelector('.btn-complet');
+// const completTodoBtn = document.querySelector('.btn-complet');
 const inputTodo = document.querySelector('#input-add-todo');
 const formTodo = document.querySelector('#formTodo');
 const form = document.querySelector('#some-form');
@@ -58,4 +58,12 @@ export function editTodo() {
             })
         }
     }
+}
+
+export function completTodo(){
+    completTodoBtn.addEventListener('click', (e) => {
+        selectedTodo.classList.toggle('completed-todo');
+        selectedTodo.classList.contains('completed-todo') ? completTodoBtn.textContent = "continuar" :  completTodoBtn.textContent = "concluir";
+        
+    })
 }

@@ -5,3 +5,4 @@ controller.createTodo();
 controller.deleteTodo();
 controller.closeDetailsTodo();
 controller.editTodo();
+controller.completTodo();

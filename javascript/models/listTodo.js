@@ -4,6 +4,7 @@ import { editTodoInput } from "../controller/controller.js"
 const todoList = document.querySelector('#todo-list');
 export const todoDetailElement = document.querySelector('#container-details');
 const todoBox = document.querySelector('#todo');
+export const completTodoBtn = document.querySelector('.btn-complet');
 
 
 let selectedTodo = null;
@@ -42,6 +43,7 @@ function createElement(element) {
     newTodoItem.addEventListener("click", (e) => {
         todoDetails.showAndHide(e.target);
         editTodoInput.value = e.target.textContent;
+        selectedTodo.classList.contains('completed-todo') ? completTodoBtn.textContent = "continuar" :  completTodoBtn.textContent = "concluir";
     })
     todoList.appendChild(newTodoItem);
 }
