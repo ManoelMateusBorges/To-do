@@ -36,6 +36,8 @@ export function deleteTodo(){
         const todoId = selectedTodo.getAttribute('data-id');
         todoService.deleteTodo(todoId)
         selectedTodo.parentElement.remove();
+        editTodoInput.value = ''
+        todoDetailElement.style.width = "0px";
     })
 }
 
@@ -49,8 +51,11 @@ export function closeDetailsTodo(){
 
 export function editTodo() {
     editTodoInput.onblur = (e) => {
-        selectedTodo.textContent = e.target.value;
-        console.dir(selectedTodo.attributes['data-id'].value)
-        // todoService.updateTodo(e.target.value)
+        if(selectedTodo.textContent != e.target.value){
+            
+            todoService.updateTodo(e.target.value, selectedTodo.attributes['data-id'].value).then((data) => {
+                selectedTodo.textContent = data.task;
+            })
+        }
     }
 }

@@ -34,11 +34,11 @@ export async function deleteTodo(id){
 
 export async function updateTodo(data,id){
     return await fetch(`${URL}/${id}`, {
-            method: "UPDATE",
+            method: "PUT",
             headers: {
                 "Content-Type": "application/json; charset=utf-8"
             },
-            body: JSON.stringify({ task: `${data}`, status: "pendent" })
+            body: JSON.stringify({task: `${data}`, status: "pendent" })
         })
         .then((data) => data.json())
         .catch((error) => console.error("Houve um erro na requisição", error))
