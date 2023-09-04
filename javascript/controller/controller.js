@@ -50,5 +50,7 @@ export function closeDetailsTodo(){
 export function editTodo() {
     editTodoInput.onblur = (e) => {
         selectedTodo.textContent = e.target.value;
+        console.dir(selectedTodo.attributes['data-id'].value)
+        // todoService.updateTodo(e.target.value)
     }
 }
