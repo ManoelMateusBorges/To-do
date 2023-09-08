@@ -1,5 +1,6 @@
 export { todo, selectedTodo }
-import { editTodoInput } from "../controller/controller.js"
+import { editTodoInputValue } from "../controller/controller.js"
+import * as utils from "../utils/valid-input.js"
 
 const todoList = document.querySelector('#todo-list');
 export const todoDetailElement = document.querySelector('#container-details');
@@ -38,12 +39,13 @@ export const todoDetails = {
 
 function createElement(element) {
     const newTodoItem = document.createElement('div');
-    newTodoItem.innerHTML = `<p data-id="${element.id}" >${element.task}</p>`;
+    const classCompletTodo = element.status == "complet" ? 'class="completed-todo"' : '';
+    newTodoItem.innerHTML = `<p data-id="${element.id}" ${classCompletTodo} >${element.task}</p>`;
     newTodoItem.classList.add('todo-item');
     newTodoItem.addEventListener("click", (e) => {
         todoDetails.showAndHide(e.target);
-        editTodoInput.value = e.target.textContent;
-        selectedTodo.classList.contains('completed-todo') ? completTodoBtn.textContent = "continuar" :  completTodoBtn.textContent = "concluir";
+        editTodoInputValue.value = e.target.textContent;
+        completTodoBtn.textContent = utils.verifyStatusTodo(selectedTodo);
     })
     todoList.appendChild(newTodoItem);
 }

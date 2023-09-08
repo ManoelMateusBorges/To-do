@@ -1,4 +1,5 @@
 import * as todoService from "../services/todoService.js";
+import * as utils from "../utils/valid-input.js"
 import { todo, selectedTodo,todoDetailElement, completTodoBtn } from "../models/listTodo.js";
 
 
@@ -8,7 +9,7 @@ const deleteTodobtn = document.querySelector('#deleteTodo');
 const inputTodo = document.querySelector('#input-add-todo');
 const formTodo = document.querySelector('#formTodo');
 const form = document.querySelector('#some-form');
-export const editTodoInput = document.querySelector('#edit-todo');
+export const editTodoInputValue = document.querySelector('#edit-todo');
 
 
 
@@ -36,7 +37,7 @@ export function deleteTodo(){
         const todoId = selectedTodo.getAttribute('data-id');
         todoService.deleteTodo(todoId)
         selectedTodo.parentElement.remove();
-        editTodoInput.value = ''
+        editTodoInputValue.value = ''
         todoDetailElement.style.width = "0px";
     })
 }
@@ -50,20 +51,20 @@ export function closeDetailsTodo(){
 
 
 export function editTodo() {
-    editTodoInput.onblur = (e) => {
+    editTodoInputValue.onblur = (e) => {
         if(selectedTodo.textContent != e.target.value){
             
-            todoService.updateTodo(e.target.value, selectedTodo.attributes['data-id'].value).then((data) => {
+            todoService.updateTodo({task: e.target.value, status: utils.verifyStatusTodo(selectedTodo)}, selectedTodo.attributes['data-id'].value).then((data) => {
                 selectedTodo.textContent = data.task;
             })
         }
     }
-}
 
-export function completTodo(){
     completTodoBtn.addEventListener('click', (e) => {
         selectedTodo.classList.toggle('completed-todo');
         selectedTodo.classList.contains('completed-todo') ? completTodoBtn.textContent = "continuar" :  completTodoBtn.textContent = "concluir";
+        // console.dir()
+        todoService.updateTodo({task: selectedTodo.textContent, status: utils.verifyStatusTodo(selectedTodo)},selectedTodo.attributes['data-id'].value)
         
     })
 }

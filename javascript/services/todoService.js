@@ -32,13 +32,13 @@ export async function deleteTodo(id){
         .catch((error) => console.error("Houve um erro na requisição", error))
 }
 
-export async function updateTodo(data,id){
+export async function updateTodo(todo,id){
     return await fetch(`${URL}/${id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json; charset=utf-8"
             },
-            body: JSON.stringify({task: `${data}`, status: "pendent" })
+            body: JSON.stringify(todo)
         })
         .then((data) => data.json())
         .catch((error) => console.error("Houve um erro na requisição", error))

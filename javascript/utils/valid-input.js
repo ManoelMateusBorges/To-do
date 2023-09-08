@@ -4,3 +4,7 @@ export function confirmEnter(number) {
     }
     return true;
 }
+
+export function verifyStatusTodo(todo){
+    return todo.classList.contains('completed-todo') ? 'complet' : 'pendent'
+}
