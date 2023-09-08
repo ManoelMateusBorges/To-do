@@ -19,7 +19,6 @@ export async function postTodoService(todo) {
         })
         .then((data) => data.json())
         .catch((error) => console.error("Houve um erro na requisição", error))
-    
 }
 
 export async function deleteTodo(id){
@@ -28,6 +27,18 @@ export async function deleteTodo(id){
             headers: {
                 "Content-Type": "application/json; charset=utf-8"
             }
+        })
+        .then((data) => data.json())
+        .catch((error) => console.error("Houve um erro na requisição", error))
+}
+
+export async function updateTodo(todo,id){
+    return await fetch(`${URL}/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json; charset=utf-8"
+            },
+            body: JSON.stringify(todo)
         })
         .then((data) => data.json())
         .catch((error) => console.error("Houve um erro na requisição", error))

@@ -1,9 +1,12 @@
 export { todo, selectedTodo }
+import { editTodoInputValue } from "../controller/controller.js"
+import * as utils from "../utils/valid-input.js"
 
 const todoList = document.querySelector('#todo-list');
-const todoDetailElement = document.querySelector('#container-details');
-const editTodo = document.querySelector('#edit-todo');
+export const todoDetailElement = document.querySelector('#container-details');
 const todoBox = document.querySelector('#todo');
+export const completTodoBtn = document.querySelector('.btn-complet');
+
 
 let selectedTodo = null;
 
@@ -18,11 +21,12 @@ const todo = {
     }
 }
 
-const todoDetails = {
+
+export const todoDetails = {
     showAndHide: (element) => {
         const item = element;
-        
-        if (selectedTodo == item && todoDetailElement.offsetWidth == 376) {
+
+        if (selectedTodo == item && todoDetailElement.offsetWidth > 0) {
             todoDetailElement.style.width = "0px";
         } else {
             todoDetailElement.style.width = "500px";
@@ -33,13 +37,15 @@ const todoDetails = {
 }
 
 
-function createElement(todo) {
+function createElement(element) {
     const newTodoItem = document.createElement('div');
-    newTodoItem.innerHTML = `<p data-id="${todo.id}" >${todo.task}</p>`;
+    const classCompletTodo = element.status == "complet" ? 'class="completed-todo"' : '';
+    newTodoItem.innerHTML = `<p data-id="${element.id}" ${classCompletTodo} >${element.task}</p>`;
     newTodoItem.classList.add('todo-item');
     newTodoItem.addEventListener("click", (e) => {
         todoDetails.showAndHide(e.target);
+        editTodoInputValue.value = e.target.textContent;
+        completTodoBtn.textContent = utils.verifyStatusTodo(selectedTodo);
     })
-
     todoList.appendChild(newTodoItem);
 }

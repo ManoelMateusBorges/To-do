@@ -1,13 +1,15 @@
 import * as todoService from "../services/todoService.js";
-import { todo, selectedTodo } from "../models/listTodo.js";
+import * as utils from "../utils/valid-input.js"
+import { todo, selectedTodo,todoDetailElement, completTodoBtn } from "../models/listTodo.js";
 
 
 const closedDetail = document.querySelector('.closed-details');
 const deleteTodobtn = document.querySelector('#deleteTodo');
-const completTodo = document.querySelector('.btn-complet');
+// const completTodoBtn = document.querySelector('.btn-complet');
 const inputTodo = document.querySelector('#input-add-todo');
 const formTodo = document.querySelector('#formTodo');
-const form = document.querySelector('#some-form')
+const form = document.querySelector('#some-form');
+export const editTodoInputValue = document.querySelector('#edit-todo');
 
 
 
@@ -31,16 +33,38 @@ export function createTodo(){
 }
 
 export function deleteTodo(){
-    console.log('tetse')
     deleteTodobtn.addEventListener("click", (e) => {
         const todoId = selectedTodo.getAttribute('data-id');
-        console.log(todoId)
         todoService.deleteTodo(todoId)
         selectedTodo.parentElement.remove();
+        editTodoInputValue.value = ''
+        todoDetailElement.style.width = "0px";
     })
 }
 
 
+export function closeDetailsTodo(){
+    closedDetail.addEventListener('click', (e) => {
+        todoDetailElement.style.width = "0px";
+    })
+}
 
 
+export function editTodo() {
+    editTodoInputValue.onblur = (e) => {
+        if(selectedTodo.textContent != e.target.value){
+            
+            todoService.updateTodo({task: e.target.value, status: utils.verifyStatusTodo(selectedTodo)}, selectedTodo.attributes['data-id'].value).then((data) => {
+                selectedTodo.textContent = data.task;
+            })
+        }
+    }
 
+    completTodoBtn.addEventListener('click', (e) => {
+        selectedTodo.classList.toggle('completed-todo');
+        selectedTodo.classList.contains('completed-todo') ? completTodoBtn.textContent = "continuar" :  completTodoBtn.textContent = "concluir";
+        // console.dir()
+        todoService.updateTodo({task: selectedTodo.textContent, status: utils.verifyStatusTodo(selectedTodo)},selectedTodo.attributes['data-id'].value)
+        
+    })
+}
