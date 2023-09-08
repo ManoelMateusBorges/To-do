@@ -64,8 +64,9 @@ div#container-details {
 .box-todo > i {
     margin: 0px 10px;
     font-size: 24px;
+   
     margin-right: 15px;
-    color: rgb(21, 185, 21);
+    color: green;
     animation-name: example;
     animation-duration: 0.3s;
     animation-direction: alternate;
@@ -73,6 +74,7 @@ div#container-details {
 }
 .box-todo > i:hover {
     color: rgb(10, 167, 10);
+    
 }
 
 
