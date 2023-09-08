@@ -40,12 +40,22 @@ export const todoDetails = {
 function createElement(element) {
     const newTodoItem = document.createElement('div');
     const classCompletTodo = element.status == "complet" ? 'class="completed-todo"' : '';
-    newTodoItem.innerHTML = `<p data-id="${element.id}" ${classCompletTodo} >${element.task}</p>`;
+    newTodoItem.innerHTML = `<div class="box-todo"><i class="bi bi-check-circle"></i><p data-id="${element.id}" ${classCompletTodo} >${element.task}</p></div>`;
     newTodoItem.classList.add('todo-item');
     newTodoItem.addEventListener("click", (e) => {
-        todoDetails.showAndHide(e.target);
+        todoDetails.showAndHide(e.target.querySelector('p'));
         editTodoInputValue.value = e.target.textContent;
-        completTodoBtn.textContent = utils.verifyStatusTodo(selectedTodo);
     })
+
+
+    newTodoItem.querySelector('i').addEventListener('click', (e) => {
+        e.stopPropagation();
+        const element = e.target;
+       if(element.classList.contains('bi-check-circle')){
+        element.classList.replace( 'bi-check-circle', 'bi-check-circle-fill')
+       }else{
+        element.classList.replace('bi-check-circle-fill', 'bi-check-circle')
+       }
+     })
     todoList.appendChild(newTodoItem);
 }

@@ -5,10 +5,9 @@ import { todo, selectedTodo,todoDetailElement, completTodoBtn } from "../models/
 
 const closedDetail = document.querySelector('.closed-details');
 const deleteTodobtn = document.querySelector('#deleteTodo');
-// const completTodoBtn = document.querySelector('.btn-complet');
 const inputTodo = document.querySelector('#input-add-todo');
-const formTodo = document.querySelector('#formTodo');
 const form = document.querySelector('#some-form');
+
 export const editTodoInputValue = document.querySelector('#edit-todo');
 
 
@@ -52,19 +51,11 @@ export function closeDetailsTodo(){
 
 export function editTodo() {
     editTodoInputValue.onblur = (e) => {
+    
         if(selectedTodo.textContent != e.target.value){
-            
             todoService.updateTodo({task: e.target.value, status: utils.verifyStatusTodo(selectedTodo)}, selectedTodo.attributes['data-id'].value).then((data) => {
                 selectedTodo.textContent = data.task;
             })
         }
     }
-
-    completTodoBtn.addEventListener('click', (e) => {
-        selectedTodo.classList.toggle('completed-todo');
-        selectedTodo.classList.contains('completed-todo') ? completTodoBtn.textContent = "continuar" :  completTodoBtn.textContent = "concluir";
-        // console.dir()
-        todoService.updateTodo({task: selectedTodo.textContent, status: utils.verifyStatusTodo(selectedTodo)},selectedTodo.attributes['data-id'].value)
-        
-    })
 }
