@@ -43,9 +43,14 @@ function createElement(element) {
     const classCompletTodo = element.status == "complet" ? 'class="completed-todo"' : '';
     newTodoItem.innerHTML = `<i class="bi bi-check-circle"></i><p data-id="${element.id}" ${classCompletTodo} >${element.task}</p>`;
     newTodoItem.classList.add('todo-item');
+
     newTodoItem.addEventListener("click", (e) => {
         todoDetails.showAndHide(e.target.querySelector('p'));
         editTodoInputValue.value = e.target.textContent;
+    })
+
+    newTodoItem.querySelector('.bi').addEventListener('click',() => {
+        newTodoItem.classList.toggle('completed-todo');
     })
 
 
