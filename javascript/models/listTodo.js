@@ -39,8 +39,9 @@ export const todoDetails = {
 
 function createElement(element) {
     const newTodoItem = document.createElement('div');
+    newTodoItem.classList.add('box-todo');
     const classCompletTodo = element.status == "complet" ? 'class="completed-todo"' : '';
-    newTodoItem.innerHTML = `<div class="box-todo"><i class="bi bi-check-circle"></i><p data-id="${element.id}" ${classCompletTodo} >${element.task}</p></div>`;
+    newTodoItem.innerHTML = `<i class="bi bi-check-circle"></i><p data-id="${element.id}" ${classCompletTodo} >${element.task}</p>`;
     newTodoItem.classList.add('todo-item');
     newTodoItem.addEventListener("click", (e) => {
         todoDetails.showAndHide(e.target.querySelector('p'));

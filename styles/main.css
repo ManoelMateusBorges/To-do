@@ -103,7 +103,7 @@ div#container-details {
     border-radius: 10px;
 }
 
-.todo-item > div > p {
+.todo-item > p {
     height: 100%;
     font-family: sans-serif;
     display: flex;
