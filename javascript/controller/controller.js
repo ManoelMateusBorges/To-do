@@ -5,8 +5,7 @@
 
 // const closedDetail = document.querySelector('.closed-details');
 // const deleteTodobtn = document.querySelector('#deleteTodo');
-const inputTodo = document.querySelector('#input-add-todo');
-const form = document.querySelector('#some-form');
+
 
 // export const editTodoInputValue = document.querySelector('#edit-todo');
 
@@ -17,32 +16,80 @@ const form = document.querySelector('#some-form');
 //     todo.loadItens(allTodo);
 // };
 
+
+
 export class Controller {
 
+    #inputTodo = document.querySelector('#input-add-todo');
+    #form = document.querySelector('#some-form');
+    #deleteTodobtn = document.querySelector('#deleteTodo');
+    todoDetailElement = document.querySelector('#container-details');
+    
     #listTodo;
     #viewTodo;
+    #serviceTodo;
 
-    constructor(listTodo, viewTodo){
+    constructor(listTodo, viewTodo, serviceTodo){
+
         this.#listTodo = listTodo;
         this.#viewTodo = viewTodo;
+        this.#serviceTodo = serviceTodo
 
-        this.createTodo();
+        this.#getAllTodo();
+        this.#createTodo();
+        this.#DeleteTodo();
     }
 
-    createTodo(){
-        form.addEventListener('submit', async e => {
-            e.preventDefault();
-            
-            // const descriptionTodo = inputTodo.value;
-            // console.log(descriptionTodo)
-            this.#viewTodo.createTodo(this.#listTodo.createTodoObject("teste", "pendente"));
-        
-            // await todoService.postTodoService(descriptionTodo).then((e)  => {
-            //     todo.addItem(e);
-            // });
-        
-            inputTodo.value = "";
+    #getAllTodo(){
+        this.#serviceTodo.getAllTodoService().then((items) => {
+           this.#listTodo.setTasks(items);
+           const tasks = this.#listTodo.getTasks();
+           tasks.forEach(task => {
+              const newTodoItem = this.#viewTodo.createTodo(task);
+              newTodoItem.addEventListener('click', (e) => {
+                this.selectTodo(e);
+              });
+           });
         })
+    }
+
+    #createTodo(){
+        this.#form.addEventListener('submit', async e => {
+            e.preventDefault();
+            const valueTodo = this.#inputTodo.value;
+            const task = this.#serviceTodo.postTodoService({ title: valueTodo, completed: false })
+            task.then((item) => {
+               const newTodoItem = this.#viewTodo.createTodo(this.#listTodo.createTodoObject(item.title, item.completed));
+               newTodoItem.addEventListener('click', () => {
+                this.selectTodo(e);
+               });
+            })
+        })
+
+        // verificar como faz para não entrar no fluxo do then quando a requisição da errada.
+    }
+
+    #DeleteTodo(){
+        this.#deleteTodobtn.addEventListener("click",(e) => {
+            const todoId = this.selectedTodo.attributes['data-id'].value;
+            const response = this.#serviceTodo.deleteTodo(todoId);
+            response.then((e) => this.selectedTodo.remove())
+        })
+    }
+
+    #showAndHideDetails(selectElement){
+        const item = selectElement;
+
+        if (this.selectedTodo == item && this.todoDetailElement.offsetWidth > 0) {
+            this.todoDetailElement.style.width = "0px";
+        } else {
+            this.todoDetailElement.style.width = "500px";
+            this.selectedTodo = item;
+        }
+    }
+
+    selectTodo(e){
+        this.#showAndHideDetails(e.target);
     }
 }
 
