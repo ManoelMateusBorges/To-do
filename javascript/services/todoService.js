@@ -18,7 +18,7 @@ export class TodoService {
                 body: JSON.stringify(todo)
             })
             if (!response.ok) {
-                throw new Error("houve um erro ")
+                throw new Error("Houve um erro ao salvar")
             }
             return response.json();
 
@@ -36,7 +36,7 @@ export class TodoService {
                     }
                 })
                 if (!response.ok) {
-                    throw new Error("houve um erro ")
+                    throw new Error("houve um erro ao deletar")
                 }
                 return response.json();
     
