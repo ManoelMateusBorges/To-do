@@ -73,8 +73,7 @@ div#container-details {
     animation-iteration-count: 2;
 }
 .box-todo > i:hover {
-    color: #daa520 ;
-    
+    color: #daa520 ; 
 }
 
 @keyframes example {
@@ -101,7 +100,7 @@ div#container-details {
     border-radius: 10px;
 }
 
-.pendent > p {
+.todo > p {
     height: 100%;
     font-family: sans-serif;
     display: flex;
@@ -109,7 +108,7 @@ div#container-details {
 }
 
 
-.pendent{
+.todo{
     width: 100%;
     height: 2.7rem;
     background-color: aliceblue;
@@ -117,9 +116,7 @@ div#container-details {
     display: flex;
     align-items: center;
     margin-bottom: 0.4em;
-    
     cursor: pointer;
-    
 }
 
 #box-add-todo{

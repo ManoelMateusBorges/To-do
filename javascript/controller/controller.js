@@ -6,7 +6,7 @@ export class Controller {
     #todoDetailElement = document.querySelector('#container-details');
     #editTodoInput = document.querySelector('#edit-todo');
     #closedDetailsElement = document.querySelector('#close-details');
-    
+
     #listTodo;
     #viewTodo;
     #serviceTodo;
@@ -16,13 +16,13 @@ export class Controller {
 
         this.#listTodo = listTodo;
         this.#viewTodo = viewTodo;
-        this.#serviceTodo = serviceTodo
+        this.#serviceTodo = serviceTodo;
 
         this.#getAllTodo();
         this.#createTodo();
         this.#DeleteTodo();
         this.#editTodo();
-        this.#closeDetails()
+        this.#closeDetails();
     }
 
     #getAllTodo(){
@@ -32,9 +32,13 @@ export class Controller {
            tasks.forEach(task => {
               const newTodoItem = this.#viewTodo.createTodo(task);
               newTodoItem.addEventListener('click', (e) => {
-                this.selectTodo(e);
+                this.#selectTodo(e);
                 this.#editTodoInput.value = this.#selectedTodo.children[1].textContent;
               });
+              newTodoItem.querySelector('.bi').addEventListener("click", (e) => {
+                e.stopPropagation();
+                this.#completeTodo(newTodoItem);
+              })
            });
         })
     }
@@ -48,9 +52,13 @@ export class Controller {
                const newTodoItem = this.#viewTodo.createTodo(item);
                this.#inputTodo.value = "";
                newTodoItem.addEventListener('click', (e) => {
-                this.selectTodo(e);
+                this.#selectTodo(e);
                 this.#editTodoInput.value = this.#selectedTodo.children[1].textContent;
                });
+               newTodoItem.querySelector('.bi').addEventListener("click", (e) => {
+                e.stopPropagation();
+                this.#completeTodo(newTodoItem);
+              })
             })
         })
     }
@@ -77,7 +85,7 @@ export class Controller {
         }
     }
 
-    selectTodo(e){
+    #selectTodo(e){
         this.#showAndHideDetails(e.target);
     }
 
@@ -99,6 +107,16 @@ export class Controller {
         this.#closedDetailsElement.addEventListener("click", () => {
             this.#showAndHideDetails(this.#selectedTodo);
         })
+    }
+
+    #completeTodo(element){
+        element.classList.toggle('completed');
+        const todoStatus = element.classList.contains('completed');
+        const todoTitle = element.textContent;
+        const todoId = element.getAttribute('data-id');
+        console.log(todoId);
+        this.#serviceTodo.updateTodo({title: todoTitle, completed: todoStatus},todoId)
+        
     }
 
 
