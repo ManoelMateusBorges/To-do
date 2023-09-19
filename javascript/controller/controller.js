@@ -1,30 +1,10 @@
-// import * as todoService from "../services/todoService.js";
-// import * as utils from "../utils/valid-input.js"
-// import { todo, selectedTodo,todoDetailElement, completTodoBtn } from "../models/listTodo.js";
-
-
-// const closedDetail = document.querySelector('.closed-details');
-// const deleteTodobtn = document.querySelector('#deleteTodo');
-
-
-// export 
-
-
-
-// export async function getAllTodo(){
-//     const allTodo = await todoService.getAllTodoService();
-//     todo.loadItens(allTodo);
-// };
-
-
-
 export class Controller {
 
     #inputTodo = document.querySelector('#input-add-todo');
     #form = document.querySelector('#some-form');
     #deleteTodobtn = document.querySelector('#deleteTodo');
     #todoDetailElement = document.querySelector('#container-details');
-    #editTodoInputValue = document.querySelector('#edit-todo');
+    #editTodoInput = document.querySelector('#edit-todo');
     
     #listTodo;
     #viewTodo;
@@ -51,7 +31,7 @@ export class Controller {
               const newTodoItem = this.#viewTodo.createTodo(task);
               newTodoItem.addEventListener('click', (e) => {
                 this.selectTodo(e);
-                this.#editTodoInputValue.value = this.#selectedTodo.textContent;
+                this.#editTodoInput.value = this.#selectedTodo.children[1].textContent;
               });
            });
         })
@@ -63,21 +43,24 @@ export class Controller {
             const valueTodo = this.#inputTodo.value;
             const task = this.#serviceTodo.postTodoService({ title: valueTodo, completed: false })
             task.then((item) => {
-               const newTodoItem = this.#viewTodo.createTodo(this.#listTodo.createTodoObject(item.title, item.completed));
-               newTodoItem.addEventListener('click', () => {
+               const newTodoItem = this.#viewTodo.createTodo(item);
+               this.#inputTodo.value = "";
+               newTodoItem.addEventListener('click', (e) => {
                 this.selectTodo(e);
+                this.#editTodoInput.value = this.#selectedTodo.children[1].textContent;
                });
             })
         })
-
-        // verificar como faz para não entrar no fluxo do then quando a requisição da errada.
     }
 
     #DeleteTodo(){
-        this.#deleteTodobtn.addEventListener("click",(e) => {
-            const todoId = this.#selectedTodo.attributes['data-id'].value;
-            const response = this.#serviceTodo.deleteTodo(todoId);
-            response.then((e) => this.#selectedTodo.remove())
+            this.#deleteTodobtn.addEventListener("click",() => {
+                const todoId = this.#selectedTodo.attributes['data-id'].value;
+                this.#serviceTodo.deleteTodo(todoId).then((e) => {
+                this.#selectedTodo.remove();
+                this.#editTodoInput.value = "";
+                this.#showAndHideDetails(this.#selectedTodo)
+            });
         })
     }
 
@@ -97,61 +80,16 @@ export class Controller {
     }
 
     #editTodo(){
-        this.#editTodoInputValue.addEventListener("blur",(e) => {
+        this.#editTodoInput.addEventListener("blur",async (e) => {
              const elementText = e.target.value;
-             
-             console.log()
+
              if(elementText != this.#selectedTodo.textContent){
                 const elementId = this.#selectedTodo.getAttribute('data-id');
                 const elementStatus = !this.#selectedTodo.classList.contains('pendent');
-                this.#serviceTodo.updateTodo({title: elementText, completed: elementStatus}, Number(elementId));
-                
+                this.#serviceTodo.updateTodo({title: elementText, completed: elementStatus},elementId).then(() => {
+                    this.#selectedTodo.children[1].textContent = elementText;
+                })
              }
         })
     }
 }
-
-// export function createTodo(){
-//     form.addEventListener('submit', async e => {
-//     e.preventDefault();
-    
-//     const descriptionTodo = inputTodo.value;
-//     console.log(descriptionTodo)
-//     viewTodo.createTodo(listTodo.createTodoObject("teste", "pendente"));
-
-//     await todoService.postTodoService(descriptionTodo).then((e)  => {
-//         todo.addItem(e);
-//     });
-
-//     inputTodo.value = "";
-// })
-// }
-
-// export function deleteTodo(){
-//     deleteTodobtn.addEventListener("click", (e) => {
-//         const todoId = selectedTodo.getAttribute('data-id');
-//         todoService.deleteTodo(todoId)
-//         selectedTodo.parentElement.remove();
-//         editTodoInputValue.value = ''
-//         todoDetailElement.style.width = "0px";
-//     })
-// }
-
-
-// export function closeDetailsTodo(){
-//     closedDetail.addEventListener('click', (e) => {
-//         todoDetailElement.style.width = "0px";
-//     })
-// }
-
-
-// export function editTodo() {
-//     editTodoInputValue.onblur = (e) => {
-    
-//         if(selectedTodo.textContent != e.target.value){
-//             todoService.updateTodo({task: e.target.value, status: utils.verifyStatusTodo(selectedTodo)}, selectedTodo.attributes['data-id'].value).then((data) => {
-//                 selectedTodo.textContent = data.task;
-//             })
-//         }
-//     }
-// }

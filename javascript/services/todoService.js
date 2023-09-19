@@ -1,4 +1,3 @@
-
 export class TodoService {
 
     #URL = "http://localhost:3000/todo"
@@ -57,8 +56,9 @@ export class TodoService {
             })
             if (!response.ok) {
                 throw new Error("houve um erro ")
+                
             }
-            return response.then((data) => data.json());
+            return response;
 
         } catch (error) {
             console.log("Houve um Erro ao tentar editar a tarefa.")
@@ -66,37 +66,4 @@ export class TodoService {
         
     }
 
-}
-
-
-// const URL = "http://localhost:3000/todo";
-
-
-export async function getAllTodoService(){
-    return await fetch(URL)
-    .then((response) => response.json())
-    .catch((error) => console.error('Houve um erro na requisição', error))
-}
-
-export async function postTodoService(todo) {
-        return await fetch(URL, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json; charset=utf-8"
-            },
-            body: JSON.stringify({ task: `${todo}`, status: "pendent" })
-        })
-        .then((data) => data.json())
-        .catch((error) => console.error("Houve um erro na requisição", error))
-}
-
-export async function deleteTodo(id){
-    return await fetch(`${URL}/${id}`, {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json; charset=utf-8"
-            }
-        })
-        .then((data) => data.json())
-        .catch((error) => console.error("Houve um erro na requisição", error))
 }

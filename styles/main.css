@@ -73,11 +73,9 @@ div#container-details {
     animation-iteration-count: 2;
 }
 .box-todo > i:hover {
-    color: rgb(10, 167, 10);
+    color: #daa520 ;
     
 }
-
-
 
 @keyframes example {
     from {font-size: 20px}
@@ -99,7 +97,7 @@ div#container-details {
     border-radius: 10px;
 }
 #todo-list::-webkit-scrollbar-thumb {
-    background:#8b8b8b; 
+    background:#d1c9c9; 
     border-radius: 10px;
 }
 

@@ -7,8 +7,3 @@ const listTodo = new TodoObject();
 const viewTodo = new ViewTodo();
 const serviceTodo = new TodoService();
 const controller = new Controller(listTodo, viewTodo, serviceTodo);
-// controller.getAllTodo();
-// controller.createTodo();
-// controller.deleteTodo();
-// controller.closeDetailsTodo();
-// controller.editTodo();
