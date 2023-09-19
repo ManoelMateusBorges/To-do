@@ -5,6 +5,7 @@ export class Controller {
     #deleteTodobtn = document.querySelector('#deleteTodo');
     #todoDetailElement = document.querySelector('#container-details');
     #editTodoInput = document.querySelector('#edit-todo');
+    #closedDetailsElement = document.querySelector('#close-details');
     
     #listTodo;
     #viewTodo;
@@ -21,6 +22,7 @@ export class Controller {
         this.#createTodo();
         this.#DeleteTodo();
         this.#editTodo();
+        this.#closeDetails()
     }
 
     #getAllTodo(){
@@ -92,4 +94,12 @@ export class Controller {
              }
         })
     }
+
+    #closeDetails(){
+        this.#closedDetailsElement.addEventListener("click", () => {
+            this.#showAndHideDetails(this.#selectedTodo);
+        })
+    }
+
+
 }
