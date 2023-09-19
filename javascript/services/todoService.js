@@ -46,6 +46,26 @@ export class TodoService {
             }
     }
 
+    async updateTodo(todo,id){
+        try {
+            const response = await fetch(`${this.#URL}/${id}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json; charset=utf-8"
+                },
+                body: JSON.stringify(todo)
+            })
+            if (!response.ok) {
+                throw new Error("houve um erro ")
+            }
+            return response.then((data) => data.json());
+
+        } catch (error) {
+            console.log("Houve um Erro ao tentar editar a tarefa.")
+        }
+        
+    }
+
 }
 
 
@@ -76,18 +96,6 @@ export async function deleteTodo(id){
             headers: {
                 "Content-Type": "application/json; charset=utf-8"
             }
-        })
-        .then((data) => data.json())
-        .catch((error) => console.error("Houve um erro na requisição", error))
-}
-
-export async function updateTodo(todo,id){
-    return await fetch(`${URL}/${id}`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json; charset=utf-8"
-            },
-            body: JSON.stringify(todo)
         })
         .then((data) => data.json())
         .catch((error) => console.error("Houve um erro na requisição", error))

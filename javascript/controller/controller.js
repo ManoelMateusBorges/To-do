@@ -7,7 +7,7 @@
 // const deleteTodobtn = document.querySelector('#deleteTodo');
 
 
-// export const editTodoInputValue = document.querySelector('#edit-todo');
+// export 
 
 
 
@@ -23,11 +23,13 @@ export class Controller {
     #inputTodo = document.querySelector('#input-add-todo');
     #form = document.querySelector('#some-form');
     #deleteTodobtn = document.querySelector('#deleteTodo');
-    todoDetailElement = document.querySelector('#container-details');
+    #todoDetailElement = document.querySelector('#container-details');
+    #editTodoInputValue = document.querySelector('#edit-todo');
     
     #listTodo;
     #viewTodo;
     #serviceTodo;
+    #selectedTodo;
 
     constructor(listTodo, viewTodo, serviceTodo){
 
@@ -38,6 +40,7 @@ export class Controller {
         this.#getAllTodo();
         this.#createTodo();
         this.#DeleteTodo();
+        this.#editTodo();
     }
 
     #getAllTodo(){
@@ -48,6 +51,7 @@ export class Controller {
               const newTodoItem = this.#viewTodo.createTodo(task);
               newTodoItem.addEventListener('click', (e) => {
                 this.selectTodo(e);
+                this.#editTodoInputValue.value = this.#selectedTodo.textContent;
               });
            });
         })
@@ -71,25 +75,39 @@ export class Controller {
 
     #DeleteTodo(){
         this.#deleteTodobtn.addEventListener("click",(e) => {
-            const todoId = this.selectedTodo.attributes['data-id'].value;
+            const todoId = this.#selectedTodo.attributes['data-id'].value;
             const response = this.#serviceTodo.deleteTodo(todoId);
-            response.then((e) => this.selectedTodo.remove())
+            response.then((e) => this.#selectedTodo.remove())
         })
     }
 
     #showAndHideDetails(selectElement){
         const item = selectElement;
 
-        if (this.selectedTodo == item && this.todoDetailElement.offsetWidth > 0) {
-            this.todoDetailElement.style.width = "0px";
+        if (this.#selectedTodo == item && this.#todoDetailElement.offsetWidth > 0) {
+            this.#todoDetailElement.style.width = "0px";
         } else {
-            this.todoDetailElement.style.width = "500px";
-            this.selectedTodo = item;
+            this.#todoDetailElement.style.width = "500px";
+            this.#selectedTodo = item;
         }
     }
 
     selectTodo(e){
         this.#showAndHideDetails(e.target);
+    }
+
+    #editTodo(){
+        this.#editTodoInputValue.addEventListener("blur",(e) => {
+             const elementText = e.target.value;
+             
+             console.log()
+             if(elementText != this.#selectedTodo.textContent){
+                const elementId = this.#selectedTodo.getAttribute('data-id');
+                const elementStatus = !this.#selectedTodo.classList.contains('pendent');
+                this.#serviceTodo.updateTodo({title: elementText, completed: elementStatus}, Number(elementId));
+                
+             }
+        })
     }
 }
 
