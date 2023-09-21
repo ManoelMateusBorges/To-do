@@ -6,6 +6,7 @@ export class Controller {
     #todoDetailElement = document.querySelector('#container-details');
     #editTodoInput = document.querySelector('#edit-todo');
     #closedDetailsElement = document.querySelector('#close-details');
+    
 
     #listTodo;
     #viewTodo;
@@ -23,6 +24,7 @@ export class Controller {
         this.#DeleteTodo();
         this.#editTodo();
         this.#closeDetails();
+        this.#backgroundTodo();
     }
 
     #getAllTodo(){
@@ -116,6 +118,11 @@ export class Controller {
         const todoId = element.getAttribute('data-id');
         console.log(todoId);
         this.#serviceTodo.updateTodo({title: todoTitle, completed: todoStatus},todoId)
+        
+    }
+
+    #backgroundTodo(){
+
         
     }
 

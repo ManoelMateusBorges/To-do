@@ -2,6 +2,7 @@ export class ViewTodo{
 
     #todoList = document.querySelector('#todo-list');
     
+    
     constructor( ){}
 
     createTodo(todoObject){
@@ -13,6 +14,10 @@ export class ViewTodo{
         newTodoItem.classList.add(todoObject.completed == true ? "completed" : "pendent");
         this.#todoList.appendChild(newTodoItem);
         return newTodoItem;
+    }
+
+    todoBackground(){
+        
     }
     
 }

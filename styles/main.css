@@ -168,3 +168,39 @@ div#container-details {
     cursor: pointer;
 }
 
+#container-config{
+    min-width: 200px;
+    background-color: #fff;
+}
+
+.box-user{
+    height: 30%;
+}
+
+.box-user-img{
+    width: 100px;
+    height: 100px;
+    background-color: blue;
+    margin: 20px auto;
+    border-radius: 50%;
+    background-image:url("../user.jpg");
+    background-size: contain;
+}
+.box-user-name{
+    text-align: center;
+
+}
+
+#container-config-back{
+    position: relative;
+    overflow: visible;
+}
+
+.box-background-suspense{
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    right: 0px;
+    z-index: 100;
+    background-color: red;
+}
