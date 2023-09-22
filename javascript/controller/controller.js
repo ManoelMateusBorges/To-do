@@ -6,6 +6,10 @@ export class Controller {
     #todoDetailElement = document.querySelector('#container-details');
     #editTodoInput = document.querySelector('#edit-todo');
     #closedDetailsElement = document.querySelector('#close-details');
+    #backgroundConfig = document.querySelector('#box-background');
+    #boxbackgroundConfig = document.querySelector(".box-background-suspense");
+
+    #conatinerTodo = document.querySelector('#container-todo-list');
     
 
     #listTodo;
@@ -122,9 +126,35 @@ export class Controller {
     }
 
     #backgroundTodo(){
+        
+        
+        this.#backgroundConfig.addEventListener("click", (e) => {
+            e.stopPropagation()
+            
+            if (this.#boxbackgroundConfig.classList.contains('hidde-box')) {
+                this.#boxbackgroundConfig.classList.remove('hidde-box');
+                // this.#boxbackgroundConfig.;
+                // this.#boxbackgroundConfig.onblur = (e) => {
+                //     this.#boxbackgroundConfig.classList.toggle('hidde-box');
+                // }
 
+            } else {
+                this.#boxbackgroundConfig.classList.add('hidde-box');
+                this.#boxbackgroundConfig.focus()
+                
+            }
+
+            
+        })
         
     }
+
+    addBackgrounds(){
+      const backgroundImages =  this.#boxbackgroundConfig.querySelector('#box-backgroundImages');
+        
+        
+    }
+
 
 
 }
