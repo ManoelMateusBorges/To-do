@@ -224,11 +224,13 @@ div#container-details {
 }
 
 .box-background-suspense:focus{
-   background-color: #daa520;
+   outline: none;
+
 }
 
 .box-background-suspense > div > .box-img:hover{
     border: 5px solid rgb(133, 115, 115);
+    
 }
 
 .hidde-box{

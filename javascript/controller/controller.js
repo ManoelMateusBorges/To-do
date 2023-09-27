@@ -130,21 +130,12 @@ export class Controller {
         
         this.#backgroundConfig.addEventListener("click", (e) => {
             e.stopPropagation()
-            
-            if (this.#boxbackgroundConfig.classList.contains('hidde-box')) {
-                this.#boxbackgroundConfig.classList.remove('hidde-box');
-                // this.#boxbackgroundConfig.;
-                // this.#boxbackgroundConfig.onblur = (e) => {
-                //     this.#boxbackgroundConfig.classList.toggle('hidde-box');
-                // }
-
-            } else {
-                this.#boxbackgroundConfig.classList.add('hidde-box');
-                this.#boxbackgroundConfig.focus()
-                
+            const teste = this.#boxbackgroundConfig;
+            teste.classList.toggle('hidde-box')
+            this.#boxbackgroundConfig.focus();
+            this.#boxbackgroundConfig.onblur = function(){
+                teste.classList.toggle('hidde-box');
             }
-
-            
         })
         
     }
