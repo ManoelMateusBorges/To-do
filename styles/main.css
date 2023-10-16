@@ -216,8 +216,8 @@ div#container-details {
     padding: 10px;
 }
 
-.box-background-suspense > div > .box-img{
-    background-image: url("../background.jpg");
+.box-background-suspense > div > img{
+    /* background-image: url("../background.jpg"); */
     background-size: contain;
     width: 100px; 
     height: 100px; 
@@ -225,7 +225,7 @@ div#container-details {
 
 
 
-.box-background-suspense > div > .box-img:hover{
+.box-background-suspense > div > img:hover{
     border: 5px solid rgb(133, 115, 115);
     
 }

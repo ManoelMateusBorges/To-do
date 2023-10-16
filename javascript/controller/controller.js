@@ -9,6 +9,7 @@ export class Controller {
     #backgroundConfig = document.querySelector('#box-background');
     #containerTodoList = document.querySelector("#container-todo-list");
     #imgbackgroundfile = document.querySelector("#image");
+    #boxBackgroundImages = document.querySelector("#box-backgroundImages");
 
     #conatinerTodo = document.querySelector('.box-background-suspense');
     
@@ -29,7 +30,7 @@ export class Controller {
         this.#DeleteTodo();
         this.#editTodo();
         this.#closeDetails();
-        this.#backgroundTodo();
+        this.#openOrClosedMenu();
         this.backgroundImagens();
     }
 
@@ -127,18 +128,26 @@ export class Controller {
         
     }
 
-    #backgroundTodo(){
+    #openOrClosedMenu(){
         this.#backgroundConfig.addEventListener("click", (e) => {
             e.stopPropagation()
             const position = e.target.getBoundingClientRect();
             this.#conatinerTodo.style.top = `${position.top + 40}px`
             this.#conatinerTodo.style.left = `${position.right - 300}px`
             this.#conatinerTodo.classList.toggle('hidden-box')
+            this.#boxBackgroundImages.querySelectorAll('img').forEach((element) => {
+                element.addEventListener("click", (e) => {
+                   this.#containerTodoList.style.backgroundImage = `url(${e.target.src})`
+                   console.log(this.#containerTodoList.style.backgroundImage)
+                })
+            })
         })
 
         this.#containerTodoList.addEventListener("click", () => {
             this.#conatinerTodo.classList.add('hidden-box');
         })
+
+        
         
     }
 
