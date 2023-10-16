@@ -199,8 +199,8 @@ div#container-details {
 .box-background-suspense{
     position: absolute;
     width: 300px;
+    z-index: 1;
     height: 400px;
-    right: 0px;
     background-color: rgb(230, 218, 218);
     animation-name: showConfigBackground;
     animation-duration: 0.5s;
@@ -223,18 +223,15 @@ div#container-details {
     height: 100px; 
 }
 
-.box-background-suspense:focus{
-   outline: none;
 
-}
 
 .box-background-suspense > div > .box-img:hover{
     border: 5px solid rgb(133, 115, 115);
     
 }
 
-.hidde-box{
-    visibility: hidden;
+.hidden-box{
+    display: none;
 }
 
 @keyframes showConfigBackground {
