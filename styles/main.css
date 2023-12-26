@@ -1,3 +1,5 @@
+
+
 * {
     padding: 0;
     margin: 0;
@@ -54,6 +56,32 @@ div#container-details {
     padding: 10px;
 }
 
+.box-todo{
+    display: flex;
+    align-items: center;
+}
+
+.box-todo > i {
+    margin: 0px 10px;
+    font-size: 24px;
+   
+    margin-right: 15px;
+    color: green;
+    animation-name: example;
+    animation-duration: 0.3s;
+    animation-direction: alternate;
+    animation-iteration-count: 2;
+}
+.box-todo > i:hover {
+    color: #daa520 ; 
+}
+
+@keyframes example {
+    from {font-size: 20px}
+    to {font-size: 40px}
+  }
+
+
 .todo-width{
     width: 100% !important;
 }
@@ -68,22 +96,19 @@ div#container-details {
     border-radius: 10px;
 }
 #todo-list::-webkit-scrollbar-thumb {
-    background:#8b8b8b; 
+    background:#d1c9c9; 
     border-radius: 10px;
 }
 
-.todo-item > p {
-    width: 100%;
+.todo > p {
     height: 100%;
     font-family: sans-serif;
     display: flex;
     align-items: center;
-    padding: .3em;
-    
 }
 
 
-.todo-item{
+.todo{
     width: 100%;
     height: 2.7rem;
     background-color: aliceblue;
@@ -91,7 +116,6 @@ div#container-details {
     display: flex;
     align-items: center;
     margin-bottom: 0.4em;
-    
     cursor: pointer;
 }
 
@@ -99,6 +123,19 @@ div#container-details {
     width: 100%;
     height: 4rem;
 }
+#some-form{
+    display: flex;
+    background-color: white;
+}
+
+#some-form > button{
+    background-color: white;
+    border: none;
+    padding: 0px 10px;
+} 
+#some-form > button:hover{
+    background-color: green;
+} 
 
 #input-add-todo{
     width: 100%;
@@ -116,21 +153,88 @@ div#container-details {
     margin-top: 10px;
 }
 
-.completed-todo {
+.completed {
     position: relative;
     text-decoration: line-through #fff;
-    background-color: rgb(11, 77, 94);
-    color: white;
-}
-.completed-todo::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 0;
+    background-color: rgba(11, 77, 94, 0.74);
+    color: black;
+    text-decoration: line-through;
     width: 100%;
-    height: 1px; /* Espessura da linha */
-    background-color: black; /* Cor da linha */
-    transform: translateY(-50%);
+    height: 2.7rem;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.4em;
+    cursor: pointer;
+}
+
+#container-config{
+    min-width: 200px;
+    background-color: #fff;
+}
+
+.box-user{
+    height: 30%;
+}
+
+.box-user-img{
+    width: 100px;
+    height: 100px;
+    background-color: blue;
+    margin: 20px auto;
+    border-radius: 50%;
+    background-image:url("../user.jpg");
+    background-size: contain;
+}
+.box-user-name{
+    text-align: center;
+
+}
+
+#container-config-back{
+    position: relative;
+    overflow: visible;
+}
+
+.box-background-suspense{
+    position: absolute;
+    width: 300px;
+    z-index: 1;
+    height: 400px;
+    background-color: rgb(230, 218, 218);
+    animation-name: showConfigBackground;
+    animation-duration: 0.5s;
+}
+
+.box-background-suspense > div{
+    width: 100%;
+    height: 40%;
+
+}
+
+#box-backgroundImages {
+    padding: 10px;
+}
+
+.box-background-suspense > div > img{
+    /* background-image: url("../background.jpg"); */
+    background-size: contain;
+    width: 100px; 
+    height: 100px; 
 }
 
 
+
+.box-background-suspense > div > img:hover{
+    border: 5px solid rgb(133, 115, 115);
+    
+}
+
+.hidden-box{
+    display: none;
+}
+
+@keyframes showConfigBackground {
+    from {height: 0px}
+    to {height: 400px}
+  }

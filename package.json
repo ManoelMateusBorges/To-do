@@ -18,6 +18,6 @@
   },
   "homepage": "https://github.com/ManoelMateusBorges/To-do#readme",
   "dependencies": {
-    "bootstrap": "^5.3.1"
+    "bootstrap-icons": "^1.10.5"
   }
 }

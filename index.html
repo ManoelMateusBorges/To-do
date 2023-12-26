@@ -4,40 +4,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/node_modules/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="./styles/main.css">
     <script src="./javascript/app.js" defer type="module"></script>
+    
     <title>Document</title>
 </head>
 
 <body>
     <main id="container-todo-list">
+        <div id="container-config">
+            <div class="box-user">
+                <div class="box-user-img"></div>
+                <div class="box-user-name">Manoel Mateus</div>
+            </div>
+            <div></div>
+        </div>
         <div id="todo" class="todo-width">
-            <div id="todo-list">
+            <div id="container-config-back"  class="text-end">
+                <i id="box-background" class="bi bi-three-dots text-light p-4"></i>
+            </div>
+            <div id="todo-list" class="mt-2">
 
             </div>
             <div id="box-add-todo">
                 <div id="box-todo-input">
                     <form id="some-form">
-                        <input id="input-add-todo" type="text" >
                         <button id="submitTodo">send</button>
+                        <input id="input-add-todo" type="text" >
                     </form>
                 </div>
             </div>
         </div>
         <div  id="container-details" >
             <div class="closed-details">
-                X
+                <i id="close-details" class="bi bi-x-lg p-2"></i>
             </div>
             <div class="box-edit-todo">
                 <input type="text" id="edit-todo">
             </div>
             <div class="box-concluir">
-                <button class="btn-complet">concluir</button>
-            </div>
-            <div class="box-concluir">
-                <button id="deleteTodo">DELETE</button>
+                <button id="deleteTodo" class="btn btn-danger">Delete</button>
             </div>
         </div>
     </main>
+    <div  class="box-background-suspense hidden-box" tabindex="0">
+        <div id="box-backgroundImages">
+            <img src="./background.jpg" alt="" srcset="">
+        </div>
+        <div>
+            <input type="file" name="image" id="image">
+        </div>
+    </div>
+    
 </body>
 </html>
