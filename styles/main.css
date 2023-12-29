@@ -245,8 +245,6 @@ div#container-details {
     display: none;
 }
 
- font-size: 24px;
-
 @keyframes showConfigBackground {
     from {height: 0px}
     to {height: 400px}
