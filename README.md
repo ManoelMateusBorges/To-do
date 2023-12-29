@@ -7,8 +7,8 @@ Criação de um projeto de listas de tarefas para estudos.
 - Adicionar o objeto { "todo": [] } no db.json 
 
 ## Conceitos utilizados
-Padrão de arquitetura: MVC
-Projeto de base: To do Microsoft
+* Padrão de arquitetura: MVC
+* Projeto de base: To do Microsoft
 
 ## Oque falta Front-end
 - [ ] Formatar o input de descrição do to do.
