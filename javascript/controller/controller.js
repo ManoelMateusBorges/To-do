@@ -132,7 +132,7 @@ export class Controller {
         this.#backgroundConfig.addEventListener("click", (e) => {
             e.stopPropagation()
             const position = e.target.getBoundingClientRect();
-            this.#conatinerTodo.style.top = `${position.top + 40}px`
+            this.#conatinerTodo.style.top = `${position.top + 20}px`
             this.#conatinerTodo.style.left = `${position.right - 300}px`
             this.#conatinerTodo.classList.toggle('hidden-box')
             this.#boxBackgroundImages.querySelectorAll('img').forEach((element) => {

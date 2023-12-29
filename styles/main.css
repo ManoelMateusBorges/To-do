@@ -6,6 +6,10 @@
     box-sizing: border-box;
     overflow: hidden;
 }
+body{
+    background-color: rgb(75, 12, 134);
+    padding: 0.1%;
+}
 
 
 #container-todo-list {
@@ -14,6 +18,7 @@
     display: flex;
     background-color: rgb(67, 144, 182);
     overflow-y: hidden;
+    border-radius: 10px;
    
 }
 
@@ -194,6 +199,13 @@ div#container-details {
 #container-config-back{
     position: relative;
     overflow: visible;
+    text-align: end;
+}
+
+
+#box-background{
+    font-size: 25px;
+    margin-right: 40px;
 }
 
 .box-background-suspense{
@@ -209,7 +221,6 @@ div#container-details {
 .box-background-suspense > div{
     width: 100%;
     height: 40%;
-
 }
 
 #box-backgroundImages {
@@ -233,6 +244,8 @@ div#container-details {
 .hidden-box{
     display: none;
 }
+
+ font-size: 24px;
 
 @keyframes showConfigBackground {
     from {height: 0px}
