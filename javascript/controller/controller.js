@@ -42,7 +42,8 @@ export class Controller {
               const newTodoItem = this.#viewTodo.createTodo(task);
               newTodoItem.addEventListener('click', (e) => {
                 this.#selectTodo(e);
-                this.#editTodoInput.value = this.#selectedTodo.children[1].textContent;
+                console.log(this.#selectedTodo.textContent)
+                this.#editTodoInput.value = this.#selectedTodo.textContent;
               });
               newTodoItem.querySelector('.bi').addEventListener("click", (e) => {
                 e.stopPropagation();
@@ -56,13 +57,13 @@ export class Controller {
         this.#form.addEventListener('submit', async e => {
             e.preventDefault();
             const valueTodo = this.#inputTodo.value;
-            const task = this.#serviceTodo.postTodoService({ title: valueTodo, completed: false })
+            const task = this.#serviceTodo.postTodoService({ description: valueTodo, complete: false })
             task.then((item) => {
                const newTodoItem = this.#viewTodo.createTodo(item);
                this.#inputTodo.value = "";
                newTodoItem.addEventListener('click', (e) => {
                 this.#selectTodo(e);
-                this.#editTodoInput.value = this.#selectedTodo.children[1].textContent;
+                this.#editTodoInput.value = this.#selectedTodo.textContent;
                });
                newTodoItem.querySelector('.bi').addEventListener("click", (e) => {
                 e.stopPropagation();
@@ -105,12 +106,17 @@ export class Controller {
              if(elementText != this.#selectedTodo.textContent){
                 const elementId = this.#selectedTodo.getAttribute('data-id');
                 const elementStatus = !this.#selectedTodo.classList.contains('pendent');
-                this.#serviceTodo.updateTodo({title: elementText, completed: elementStatus},elementId).then(() => {
-                    this.#selectedTodo.children[1].textContent = elementText;
+                console.log(this.#selectedTodo)
+                this.#serviceTodo.updateTodo({description: elementText, complete: elementStatus},elementId).then((response) => response.json()).then((e) => {
+                    console.log(e)
+                    this.#selectedTodo.innerHTML = `<i class="bi bi-check-circle"></i>${e.description}`;
+                    
                 })
              }
         })
     }
+
+    
 
     #closeDetails(){
         this.#closedDetailsElement.addEventListener("click", () => {
@@ -124,8 +130,7 @@ export class Controller {
         const todoTitle = element.textContent;
         const todoId = element.getAttribute('data-id');
         console.log(todoId);
-        this.#serviceTodo.updateTodo({title: todoTitle, completed: todoStatus},todoId)
-        
+        this.#serviceTodo.updateTodo({description: todoTitle, complete: todoStatus},todoId)
     }
 
     #openOrClosedMenu(){

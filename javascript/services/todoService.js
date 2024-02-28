@@ -1,6 +1,6 @@
 export class TodoService {
 
-    #URL = "http://localhost:3000/todo"
+    #URL = "http://localhost:8080/tasks"
 
     async getAllTodoService() {
         return await fetch(this.#URL)

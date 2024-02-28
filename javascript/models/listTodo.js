@@ -4,8 +4,8 @@ export class TodoObject {
 
     constructor(){ }
 
-    createTodoObject(description, status) {
-        const task = {title: description, completed: status}
+    createTodoObject(text, status) {
+        const task = {description: text}
         this.#tasks.push(task);
         return task;
     };
