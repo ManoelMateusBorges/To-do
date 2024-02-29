@@ -38,7 +38,7 @@ export class TodoService {
                 if (!response.ok) {
                     throw new Error("houve um erro ao deletar")
                 }
-                return response.json();
+                return response;
     
             } catch (error) {
                 console.log(error)

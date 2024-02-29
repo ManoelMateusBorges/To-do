@@ -77,6 +77,7 @@ export class Controller {
             this.#deleteTodobtn.addEventListener("click",() => {
                 const todoId = this.#selectedTodo.attributes['data-id'].value;
                 this.#serviceTodo.deleteTodo(todoId).then((e) => {
+                console.log(e)
                 this.#selectedTodo.remove();
                 this.#editTodoInput.value = "";
                 this.#showAndHideDetails(this.#selectedTodo)
@@ -106,9 +107,7 @@ export class Controller {
              if(elementText != this.#selectedTodo.textContent){
                 const elementId = this.#selectedTodo.getAttribute('data-id');
                 const elementStatus = !this.#selectedTodo.classList.contains('pendent');
-                console.log(this.#selectedTodo)
                 this.#serviceTodo.updateTodo({description: elementText, complete: elementStatus},elementId).then((response) => response.json()).then((e) => {
-                    console.log(e)
                     this.#selectedTodo.innerHTML = `<i class="bi bi-check-circle"></i>${e.description}`;
                     
                 })
