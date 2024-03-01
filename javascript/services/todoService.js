@@ -1,6 +1,6 @@
 export class TodoService {
 
-    #URL = "http://localhost:3000/todo"
+    #URL = "http://localhost:8080/tasks"
 
     async getAllTodoService() {
         return await fetch(this.#URL)
@@ -38,7 +38,7 @@ export class TodoService {
                 if (!response.ok) {
                     throw new Error("houve um erro ao deletar")
                 }
-                return response.json();
+                return response;
     
             } catch (error) {
                 console.log(error)

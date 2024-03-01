@@ -8,10 +8,10 @@ export class ViewTodo{
     createTodo(todoObject){
         const newTodoItem = document.createElement('div');
         newTodoItem.classList.add('box-todo');
-        newTodoItem.innerHTML = `<i class="bi bi-check-circle"></i><span>${todoObject.title}</span>`;
+        newTodoItem.innerHTML = `<i class="bi bi-check-circle"></i>${todoObject.description}`;
         newTodoItem.setAttribute('data-id',todoObject.id)
         newTodoItem.classList.add("todo");
-        newTodoItem.classList.add(todoObject.completed == true ? "completed" : "pendent");
+        newTodoItem.classList.add(todoObject.complete == true ? "completed" : "pendent");
         this.#todoList.appendChild(newTodoItem);
         return newTodoItem;
     }
